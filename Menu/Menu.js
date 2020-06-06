@@ -47,3 +47,5 @@ function menuMaker(menuItems){
   menu.appendChild(ul);
   return menu;
 }
+
+const menuButton = document.querySelector(".menu-button");
