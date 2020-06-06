@@ -197,3 +197,72 @@ data.forEach(article=>{
   const newArticle = articleMaker(article);
   articlesContainer.appendChild(newArticle);
 });
+
+function articleConstructor(title, date, pOne, pTwo, pThree){
+  const newArticleObj = {
+    title,
+    date,
+    firstParagraph: pOne,
+    secondParagraph: pTwo,
+    thirdParagraph: pThree
+  };
+  data.push(newArticleObj);
+  const newArticle = articleMaker(newArticleObj);
+  articlesContainer.appendChild(newArticle);
+}
+
+const newArticleButton = document.createElement("button");
+newArticleButton.id = "new-article";
+newArticleButton.textContent = "Create Article!"
+newArticleButton.addEventListener("click", showNewArticleModal);
+articlesContainer.prepend(newArticleButton);
+
+function showNewArticleModal(){
+  let newArticleModal = document.querySelector(".new-article-modal")
+  if(newArticleModal){
+    newArticleModal.style.display = "block";
+  }else {
+    let newArticleModal = document.createElement("div");
+    newArticleModal.classList.add("new-article-modal");
+
+    const closeModal = document.createElement("button");
+    closeModal.textContent = "Close";
+    closeModal.addEventListener("click", closeNewArticleModal);
+
+    const titleInput = document.createElement("input");
+    titleInput.id = "title";
+    titleInput.placeholder = "title";
+
+    const dateInput = document.createElement("input");
+    dateInput.id = "date";
+    dateInput.placeholder = "date";
+
+    const pOneInput = document.createElement("textarea");
+    pOneInput.id = "pOne";
+    pOneInput.placeholder = "first paragraph";
+
+    const pTwoInput = document.createElement("textarea");
+    pTwoInput.id = "pTwo";
+    pTwoInput.placeholder = "second paragraph";
+
+    const pThreeInput = document.createElement("textarea");
+    pThreeInput.id = "pThree";
+    pThreeInput.placeholder = "third paragraph";
+
+    const submitButton = document.createElement("button");
+    submitButton.id = 'create-article';
+    submitButton.textContent = "Create Article";
+    submitButton.addEventListener("click", ()=>{
+      articleConstructor(titleInput.value, dateInput.value, pOneInput.value, pTwoInput.value, pThreeInput.value);
+      closeNewArticleModal();
+    });
+
+    newArticleModal.append(closeModal, titleInput, dateInput, pOneInput, pTwoInput, pThreeInput, submitButton);
+    document.body.appendChild(newArticleModal);
+  }
+}
+
+function closeNewArticleModal(){
+  const newArticleModal = document.querySelector(".new-article-modal")
+  newArticleModal.style.display = "none";
+}
