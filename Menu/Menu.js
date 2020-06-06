@@ -45,12 +45,15 @@ function menuMaker(menuItems){
   });
 
   menu.appendChild(ul);
+
+  const menuButton = document.querySelector(".menu-button");
+
+  menuButton.addEventListener("click", ()=>{
+    menu.classList.toggle("menu--open");
+  });
+
   return menu;
 }
 
-const menuButton = document.querySelector(".menu-button");
-
-menuButton.addEventListener("click", ()=>{
-  const menu = document.querySelector("menu");
-  menu.classList.toggle("menu--open");
-})
+const menu = menuMaker(menuItems);
+document.body.appendChild(menu);
