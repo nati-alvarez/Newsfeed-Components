@@ -139,3 +139,10 @@ function articleMaker(articleObj){
   articleDiv.append(title, date, pOne, pTwo, pThree, expandButton);
   return articleDiv;
 }
+
+const articlesContainer = document.querySelector("div.articles");
+
+data.forEach(article=>{
+  const newArticle = articleMaker(article);
+  articlesContainer.appendChild(newArticle);
+});
