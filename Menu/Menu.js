@@ -49,6 +49,11 @@ function menuMaker(menuItems){
   const menuButton = document.querySelector(".menu-button");
 
   menuButton.addEventListener("click", ()=>{
+    if(menu.classList.contains('menu--open')){
+      gsap.to(menu, {duration: 1, left: "-100%"});
+    }else {
+      gsap.to(menu, {duration: .6 , left: "0%"})  
+    }
     menu.classList.toggle("menu--open");
   });
 
