@@ -149,6 +149,13 @@ function articleMaker(articleObj){
   const articleDiv = document.createElement("div");
   articleDiv.classList.add("article");
 
+  const closeButton = document.createElement("button");
+  closeButton.classList.add("close");
+  closeButton.textContent = "X";
+  closeButton.addEventListener("click", ()=>{
+    gsap.to(articleDiv, {duration: .8, left: "100%", opacity: 0, display: "none"})
+  });
+
   const title = document.createElement("h2");
   title.textContent = articleObj.title;
 
@@ -180,7 +187,7 @@ function articleMaker(articleObj){
     articleDiv.classList.toggle("article-open");
   });
 
-  articleDiv.append(title, date, pOne, pTwo, pThree, expandButton);
+  articleDiv.append(closeButton, title, date, pOne, pTwo, pThree, expandButton);
   return articleDiv;
 }
 
