@@ -132,6 +132,9 @@ function articleMaker(articleObj){
 
   const expandButton = document.createElement("span");
   expandButton.classList.add("expandButton");
+  expandButton.addEventListener("click", ()=>{
+    articleDiv.classList.toggle("article-open");
+  });
 
   articleDiv.append(title, date, pOne, pTwo, pThree, expandButton);
   return articleDiv;
