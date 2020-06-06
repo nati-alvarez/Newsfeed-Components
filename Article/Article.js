@@ -165,8 +165,18 @@ function articleMaker(articleObj){
 
   const expandButton = document.createElement("span");
   expandButton.classList.add("expandButton");
-  expandButton.textContent = "show more";
+  expandButton.textContent = "Click to Expand";
   expandButton.addEventListener("click", ()=>{
+    if(articleDiv.classList.contains("article-open")){
+      gsap.to(articleDiv, {duration: 1, height: "50px"});
+      gsap.fromTo(expandButton, {duration: 2, opacity: 0}, {duration: 2, opacity: 1});
+      expandButton.textContent = "Click to Expand";
+    }else{
+      gsap.to(articleDiv, {duration: 1, height: "400px"});
+      gsap.fromTo(expandButton, {duration: 2, opacity: 0}, {duration: 2, opacity: 1});
+      expandButton.textContent = "Click to Close";
+    }
+    
     articleDiv.classList.toggle("article-open");
   });
 
